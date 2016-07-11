@@ -1,0 +1,20 @@
+.map {
+	margin-left = 20%
+	position: absolute;
+	stroke: black;
+}
+
+.gratBackground {
+	fill: #fff;
+}
+
+.gratLines {
+	stroke: #94d9e3;
+	fill: rgba(0,0,0,0);
+	stroke-width: 0.5px;
+}
+.countries {
+	fill: #ccc;
+	stroke: #fff;
+	stroke-width:0.2px;
+}
