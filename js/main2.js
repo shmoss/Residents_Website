@@ -55,9 +55,10 @@ function setMap() {
 	var q = d3_queue.queue();
     q
 		.defer(d3.json, "data/countries.topojson")
+		.defer(d3.json, "data/Info6.topojson")
 		.await(callback);
 
-	function callback(error, countries) {
+	function callback(error, countries, centroid) {
 	console.log("callback funtion initialized")
 
 	var countries = map.selectAll(".countries")
@@ -70,6 +71,22 @@ function setMap() {
 			.attr("d", function(d) {
 				return path(d);
 			})
+	console.log(countries)
+
+	var centroid = map.selectAll(".centroid")
+        .data(centroid.features)
+        .enter()
+        .append("path")
+        .attr("d",path)
+		.attr("class", function(d){
+			return "centroid "+d.properties.info_city;
+
+		})
+      	
+		
+    console.log(centroid)
+}
+
 
 	}
-}
+
