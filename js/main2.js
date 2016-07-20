@@ -100,14 +100,17 @@ function setMap() {
         .data(centroid.features)
         .enter()
         .append("path")
-        .attr("d",path)
-        .attr("r", 100)
+        .attr("d", path)
+        .attr("fill", 'red')
 		.attr("class", function(d){
 			return "centroid "+d.properties.info_city;
 
 		})
 
-
+	// d3.selectAll(".centroid")
+	// 	.attr("height", 900)
+	// 	.attr("cx", 900)
+	// 	.attr("cy", 900)
 
 
       	
@@ -116,7 +119,7 @@ function setMap() {
  
 }
 
-
+var timeSlider =  d3.select('#slider7').call(d3.slider().axis(true).min(1970).max(2000).step(1));
 
 // var svg = d3.select("body")
 //   .append("svg")
