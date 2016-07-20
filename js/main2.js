@@ -12,7 +12,28 @@ window.onload = initialize();
 		setMap()
 	};
 
+
+
+
+
+function zoomed() {
+	console.log("zooming now!")
+	///called on zoom events
+	d3.selectAll(".centroid").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+	d3.selectAll(".gratLines").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+	d3.selectAll(".countries").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+	d3.selectAll(".gratBackground").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+
+};
+
 function setMap() {
+
+	var zoom = d3.behavior.zoom()
+    .translate([0, 0])
+    .scale(1)
+    .scaleExtent([1, 21])
+	.on("zoom", zoomed);
+
 	console.log("setting map")
 	var map = d3.select("body")
 		.append("svg")
@@ -44,6 +65,8 @@ function setMap() {
 		.datum(graticule.outline)
 		.attr("class", "gratBackground")
 		.attr("d", path)
+		zoom.on('zoom', zoomed)
+		map.call(zoom);
 
 	var gratLines = map.selectAll(".gratLines")
 		.data(graticule.lines) //
@@ -78,14 +101,31 @@ function setMap() {
         .enter()
         .append("path")
         .attr("d",path)
+        .attr("r", 100)
 		.attr("class", function(d){
 			return "centroid "+d.properties.info_city;
 
 		})
+
+
+
+
       	
 		
     console.log(centroid)
+ 
 }
+
+
+
+// var svg = d3.select("body")
+//   .append("svg")
+//   .attr("width", "100%")
+//   .attr("height", "100%")
+//   .call(d3.behavior.zoom().on("zoom", function () {
+//     svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+//   }))
+//   .append("g")
 
 
 	}

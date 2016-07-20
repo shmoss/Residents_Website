@@ -25,3 +25,10 @@
 	stroke: #fff;
 	stroke-width:0.2px;
 }
+
+.centroid {
+	fill: green;
+	height: 20%;
+    width: 120%;
+
+}
